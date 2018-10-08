@@ -1,0 +1,56 @@
+1.
+Gameloop er það sem lætur leikinn virka allar loopur þurfa að geta processa events/inputs t.d. 
+með þegar player er að heryfa sig þarf að vera events sem checkar hvenar einhver sæestakur takki er yttur á,
+síðan þarftu að geta updatea leikinn sem stórnar hvað gerist ef object klessir á vegg 
+eða playerinn fer að heryfa sig þá þarf update loopan að upfæra allt. Síðan þarftu að geta rendera það
+sem þú ert með í leiknum t.d. player model eða mobs model eða dótari á map t.d. hús eða götur.
+
+2.
+Þú geturu notað grid system sem character hreyfir sig eftir grid sem hreyfir þig innanum grid
+einhverri hæð og lengd t.d. 
+tilesize = 32 
+width = 1024
+hight = 768
+(GW = width / tilesize) 
+(GH = higth / tilesize)                W  *  H
+og þá ertu kominn með grid size sem er 32 * 24
+og þá ertu að herfa þig innan um 768 kassa og þegar þú ert að heryfa þig um 1 kassa í einu.
+
+síðan geturu notað velocity þar er notað mikið stærðfræði til að láta þig virka.
+Fyrst þarftu að gera breytu sem segir hvað playerinn/enemie á að heryfa sig hrat,
+síðan þarftu að gera breytur þanning að movementinið muni virka
+hér fyrir neðan verður codeið með velocity movement
+constant velocity/constant speed hjá mér er sett í 200
+
+self.vx, self.vy = 0, 0
+
+def get_keys(self):
+        self.vx, self.vy = 0, 0
+        keys = pg.key.get_pressed()
+        if keys[pg.K_LEFT] or keys[pg.K_a]:
+            self.vel.x = -PLAYER_SPEED
+        if keys[pg.K_RIGHT] or keys[pg.K_d]:
+            self.vel.x= PLAYER_SPEED
+        if keys[pg.K_UP] or keys[pg.K_w]:
+            self.vel.y = -PLAYER_SPEED
+        if keys[pg.K_DOWN] or keys[pg.K_s]:
+            self.vel.y = PLAYER_SPEED
+        if self.vel.x != 0 and self.vel.y != 0:
+            self.vel *= 0.7071
+            
+
+Þessi kóði er ekki með allt sem hann þarf til að láta player hreyfa sig því það myndi vera 20 - 30 línur
+
+3.
+veit ekki hverning ég að að útskýra það í skriflegu formi en hér verður kóði
+
+   def move(self, dx=0, dy=0):
+        if not self.collide_with_walls(dx, dy):		# hér er það sem leifir ekki playerinum að hreyfa sig ef hann er að reyna að labba í gegnum veg.
+            self.x += dx
+            self.y += dy
+
+    def collide_with_walls(self, dx=0, dy=0):
+        for wall in self.game.walls:
+            if wall.x == self.x + dx and wall.y == self.y + dy: # checkar hvort player er að fara að inn í vegginn í bæði x og y
+                return True					# returnar true ef hann er að lenda á veg og er að reyna að komast í gegnum hann
+        return False						# returnar false ef hann er ekki að fara lenda á vegg
