@@ -80,8 +80,8 @@ class Player(pg.sprite.Sprite):
         collide_with_walls(self, self.game.walls, 'y')
         self.rect.center = self.hit_rect.center
 
-# þetta var fyrir byssu sem ég ætlaði að festa á bíllinn en ég náði ekki að láta hann
-# byrta á bílnum
+# þetta var fyrir byssu sem ég ætlaði að festa á bíllinn en ég náði ekki að láta mynd
+# byrtast á bílnum / playerinum
 class Gun(pg.sprite.Sprite):
     def __init__(self, game, pos):
         self.groups = game.all_sprites, game.barrel
@@ -145,8 +145,7 @@ class Mob(pg.sprite.Sprite):
         self.health_bar = pg.Rect(0, 0, width, 7)
         pg.draw.rect(self.image, col, self.health_bar)
 
-
-
+# Fyrir reykinn sem kemur bakkvið bíllinn
 class Smoke(pg.sprite.Sprite):
     def __init__(self, game, pos, dir):
         self.groups = game.all_sprites, game.smoke
@@ -160,7 +159,9 @@ class Smoke(pg.sprite.Sprite):
         self.vel = dir.rotate(spread) * SMOKE_SPEED
         self.spawn_time = pg.time.get_ticks()
 
-
+# her fynn ég posiation á bílnum og læt það byrta þegar það er að ýtta á W eða ArrowKey_up
+# síðan er timi þangað sem leyfir myndini að vera á skjánum síðan er hún eðilögð / killed 
+# til að myndinn mindi ekki festast á staðnum sem playerinn hefur verið á.
     def update(self):
         self.pos += self.vel * self.game.dt
         self.rect.center = self.pos
