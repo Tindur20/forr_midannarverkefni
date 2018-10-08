@@ -15,13 +15,15 @@ class Map:
         self.tileheight = len(self.data)
         self.width = self.tilewidth * TILESIZE
         self.height = self.tileheight * TILESIZE
-
+        
+# by til cameruna til að elta playerinn
 class Camera:
     def __init__(self, width, height):
         self.camera = pg.Rect(0, 0, width, height)
         self.width = width
         self.height = height
-
+       
+# eltir playerinn þegar hann er að hreyfast
     def apply(self, entity):
         return entity.rect.move(self.camera.topleft)
 
