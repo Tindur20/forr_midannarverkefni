@@ -7,7 +7,7 @@ Sigsteinn Snær
 þú hreyfa þig um mapið og átt að drepa alla enemies með því að colidea við enemies þeir geta líka gert damange við þig svo þú þarft að passa þig að ekki deygja úttaf því. Ef þú deyrð þá resetast leikurinn.
 
 ### Myndband af leiknum
-Coming soon.
+Youtube [linkur](https://youtu.be/I67MdYr9Y7I)
 
 ### Heimildir sem ég notaði
 Ég notaði tutorial frá kidscancode á youtube [linkur](https://www.youtube.com/playlist?list=PLsk-HSGFjnaGQq7ybM8Lgkh5EMxUWPm2i)           
